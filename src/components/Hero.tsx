@@ -8,10 +8,11 @@ export function Hero() {
         <img
           src="/hero-chambers.png"
           alt="Advocate Tarun Mishra & Associates — Executive Law Chambers"
-          className="h-full w-full object-cover object-center opacity-40 mix-blend-overlay"
+          className="h-full w-full object-cover object-center opacity-80"
           loading="eager"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-background/40" />
+        {/* Soft gradient to ensure text readability without darkening the whole image too much */}
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
       </div>
 
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 pb-20 pt-24 sm:px-10 sm:pb-32 sm:pt-40">
