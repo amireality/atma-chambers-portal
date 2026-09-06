@@ -17,7 +17,28 @@ export function Hero() {
           </span>
         </h1>
 
-        <dl className="mt-20 grid grid-cols-1 gap-y-6 border-t border-border pt-8 sm:grid-cols-3 sm:gap-x-10">
+        <div className="mt-12 overflow-hidden border border-border bg-surface sm:mt-16">
+          <div className="relative aspect-[8/3] w-full overflow-hidden">
+            <img
+              src="/hero-chambers.png"
+              alt="Advocate Tarun Mishra & Associates — Executive Law Chambers"
+              data-source="media_1788666326401.png"
+              className="h-full w-full object-cover object-center"
+              loading="eager"
+            />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+            <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between border-t border-white/10 pt-2 sm:bottom-4 sm:left-6 sm:right-6">
+              <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-brass">
+                Chambers Library & Consultation Desk
+              </span>
+              <span className="hidden font-mono text-[9px] tracking-[0.28em] text-muted-foreground sm:inline">
+                Jaipur Jurisdiction
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <dl className="mt-16 grid grid-cols-1 gap-y-6 border-t border-border pt-8 sm:mt-20 sm:grid-cols-3 sm:gap-x-10">
           <div>
             <dt className="rule-label">Location</dt>
             <dd className="mt-2 font-mono text-[12px] tracking-[0.14em] text-foreground">
