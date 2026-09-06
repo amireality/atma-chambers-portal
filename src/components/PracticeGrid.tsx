@@ -32,35 +32,34 @@ export function PracticeGrid() {
             return (
               <article
                 key={area.code}
-                className={`group relative overflow-hidden bg-[#F4F0E8] p-8 transition-colors duration-500 hover:bg-white sm:p-10 ${area.span}`}
+                className={`group relative overflow-hidden bg-[#F4F0E8] p-8 transition-all duration-700 hover:bg-terracotta hover:text-[#F4F0E8] sm:p-10 ${area.span}`}
               >
-                <div className="absolute right-8 top-8 opacity-20 transition-opacity duration-500 group-hover:opacity-100 text-[#B99A62]">
+                {/* Geometric Pattern Overlay */}
+                <div className="absolute inset-0 bg-pattern-circles opacity-0 mix-blend-overlay transition-opacity duration-700 group-hover:opacity-100" />
+                
+                <div className="absolute right-8 top-8 opacity-20 transition-all duration-700 group-hover:opacity-100 group-hover:text-white text-[#B99A62]">
                   <Icon className="w-16 h-16 sm:w-20 sm:h-20 stroke-[1] group-hover:animate-draw" />
                 </div>
                 
                 <span
                   aria-hidden="true"
-                  className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-[#B99A62]/0 blur-2xl transition-colors duration-500 group-hover:bg-[#B99A62]/10"
-                />
-                <span
-                  aria-hidden="true"
-                  className="pointer-events-none absolute inset-0 border border-transparent transition-colors duration-300 group-hover:border-[#B99A62]/50"
+                  className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-[#B99A62]/0 blur-2xl transition-colors duration-700 group-hover:bg-white/10"
                 />
 
                 <div className="flex items-baseline justify-between relative z-10">
-                  <span className="font-mono text-[10px] tracking-[0.24em] text-[#080B0F]/40">
+                  <span className="font-mono text-[10px] tracking-[0.24em] text-[#080B0F]/40 transition-colors duration-700 group-hover:text-white/60">
                     {area.index}
                   </span>
-                  <span className="font-mono text-[10px] tracking-[0.24em] text-[#B99A62]">
+                  <span className="font-mono text-[10px] tracking-[0.24em] text-[#B99A62] transition-colors duration-700 group-hover:text-white/80">
                     {area.code}
                   </span>
                 </div>
 
-                <h3 className="mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] text-[#080B0F] transition-transform duration-300 group-hover:-translate-y-1 sm:text-3xl relative z-10">
+                <h3 className="mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] text-[#080B0F] transition-all duration-700 group-hover:-translate-y-1 group-hover:text-white sm:text-3xl relative z-10">
                   {area.title}
                 </h3>
 
-                <div className="mt-8 h-px w-10 bg-[#B99A62]/40 transition-all duration-300 group-hover:w-24 group-hover:bg-[#B99A62] relative z-10" />
+                <div className="mt-8 h-px w-10 bg-[#B99A62]/40 transition-all duration-700 group-hover:w-24 group-hover:bg-[#B99A62] relative z-10" />
               </article>
             );
           })}

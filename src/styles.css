@@ -41,6 +41,7 @@
   --color-accent-foreground: var(--accent-foreground);
   --color-brass: var(--brass);
   --color-brass-highlight: var(--brass-highlight);
+  --color-terracotta: var(--terracotta);
   --color-destructive: var(--destructive);
   --color-destructive-foreground: var(--destructive-foreground);
   --color-border: var(--border);
@@ -61,6 +62,7 @@
   --muted-foreground: oklch(0.75 0.008 240); /* #AAB1B8 */
   --brass: oklch(0.69 0.068 82);             /* #B99A62 */
   --brass-highlight: oklch(0.83 0.052 87);   /* #D8C49A */
+  --terracotta: oklch(0.48 0.16 35);         /* Rich warm rust/terracotta */
 
   --card-foreground: var(--foreground);
   --popover: var(--card);
@@ -156,4 +158,14 @@
   stroke-dasharray: 150;
   stroke-dashoffset: 150;
   animation: draw 2s ease-in-out forwards;
+}
+
+@utility bg-pattern-jaali {
+  background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B99A62' stroke-width='1.5' stroke-opacity='0.15'%3E%3Cpath d='M40 0l40 40-40 40L0 40z'/%3E%3Cpath d='M40 20l20 20-20 20-20-20z'/%3E%3Ccircle cx='40' cy='40' r='10'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
+}
+
+@utility bg-pattern-circles {
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23B99A62' stroke-width='2' stroke-opacity='0.1'%3E%3Ccircle cx='60' cy='60' r='45'/%3E%3Ccircle cx='0' cy='0' r='45'/%3E%3Ccircle cx='120' cy='0' r='45'/%3E%3Ccircle cx='0' cy='120' r='45'/%3E%3Ccircle cx='120' cy='120' r='45'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 120px;
 }
