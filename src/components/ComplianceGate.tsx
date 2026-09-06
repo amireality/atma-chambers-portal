@@ -42,7 +42,7 @@ export function ComplianceGate({ children }: { children: React.ReactNode }) {
     <>
       <div
         aria-hidden={gateOpen}
-        {...(gateOpen ? { inert: "" as unknown as boolean } : {})}
+        {...(gateOpen ? { inert: true } : {})}
         className={
           gateOpen
             ? "pointer-events-none select-none blur-[10px] saturate-50 brightness-[0.55]"
