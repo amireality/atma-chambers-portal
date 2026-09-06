@@ -3,8 +3,8 @@ import { firm, location } from "@/lib/firmData";
 export function Hero() {
   return (
     <section id="top" className="relative border-b border-border overflow-hidden">
-      {/* Background Image - Pulled down so it doesn't obscure the top text */}
-      <div className="absolute inset-x-0 bottom-0 top-16 sm:top-24 z-0">
+      {/* Background Image - Restored to full coverage */}
+      <div className="absolute inset-0 z-0">
         <img
           src="/hero-chambers.png"
           alt="Advocate Tarun Mishra & Associates — Executive Law Chambers"
@@ -15,7 +15,8 @@ export function Hero() {
         <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-background/10" />
       </div>
 
-      <div className="relative z-10 mx-auto max-w-[1400px] px-5 pb-6 pt-6 sm:px-10 sm:pb-16 sm:pt-24">
+      {/* Added pt-32/pt-40 so content starts below the sticky header without needing image offsets */}
+      <div className="relative z-10 mx-auto max-w-[1400px] px-5 pb-6 pt-32 sm:px-10 sm:pb-16 sm:pt-40">
         <p className="font-mono text-[9px] tracking-[0.32em] text-brass sm:text-[10px]">
           {location.city} · {location.state} · {location.country}
         </p>
