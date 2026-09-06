@@ -21,9 +21,6 @@ export function CounselRoster() {
 
   return (
     <section id="counsel" className="relative border-b border-[#23120B]/10 bg-[#F4F0E8] text-[#23120B]">
-      {/* Smooth blending gradient from the dark hero section */}
-      <div className="absolute top-0 inset-x-0 h-32 bg-gradient-to-b from-[#23120B] to-transparent pointer-events-none" />
-      
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 pt-32 pb-24 sm:px-10 sm:pt-40 sm:pb-32">
         <div className="grid grid-cols-1 gap-12 lg:grid-cols-12">
           <div className="lg:col-span-4 flex flex-col items-start animate-fade-in-up">
