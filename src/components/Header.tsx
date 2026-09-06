@@ -8,8 +8,8 @@ const nav = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 h-[72px] border-b border-border bg-background/70 backdrop-blur-xl">
-      <div className="mx-auto flex h-full max-w-[1400px] items-center justify-between px-5 sm:px-10">
+    <header className="sticky top-0 z-40 min-h-[72px] border-b border-border bg-background/90 backdrop-blur-xl flex flex-col justify-center">
+      <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between px-5 sm:px-10">
         <a
           href="#top"
           className="font-mono text-[12px] tracking-[0.32em] text-foreground transition-colors hover:text-brass"
@@ -37,13 +37,14 @@ export function Header() {
         </span>
       </div>
 
-      <nav aria-label="Sections" className="md:hidden">
-        <ul className="flex items-center justify-center gap-8 border-b border-border bg-background/70 py-3 backdrop-blur-xl">
+      {/* Golden transparent bar for mobile navigation */}
+      <nav aria-label="Sections" className="md:hidden border-t border-brass/20 bg-brass/10 backdrop-blur-xl">
+        <ul className="flex items-center justify-center gap-8 py-3">
           {nav.map((item) => (
             <li key={item.href}>
               <a
                 href={item.href}
-                className="font-mono text-[10px] tracking-[0.24em] text-muted-foreground"
+                className="font-mono text-[10px] tracking-[0.24em] text-brass hover:text-brass/80"
               >
                 {item.label}
               </a>

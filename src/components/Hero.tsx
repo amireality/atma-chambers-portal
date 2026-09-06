@@ -3,8 +3,8 @@ import { firm, location } from "@/lib/firmData";
 export function Hero() {
   return (
     <section id="top" className="relative border-b border-border overflow-hidden">
-      {/* Background Image */}
-      <div className="absolute inset-0 z-0">
+      {/* Background Image - Pulled down so it doesn't obscure the top text */}
+      <div className="absolute inset-x-0 bottom-0 top-16 sm:top-24 z-0">
         <img
           src="/hero-chambers.png"
           alt="Advocate Tarun Mishra & Associates — Executive Law Chambers"
@@ -31,21 +31,21 @@ export function Hero() {
 
         <dl className="mt-8 grid grid-cols-3 gap-x-2 border-t border-border/50 pt-5 sm:mt-12 sm:gap-x-10 sm:pt-6">
           <div>
-            <dt className="rule-label text-[9px] text-brass/80 sm:text-[10px]">Location</dt>
+            <dt className="rule-label text-[9px] text-brass/80 sm:text-[10px]">Established</dt>
             <dd className="mt-1 font-mono text-[10px] tracking-[0.1em] text-foreground sm:text-[12px] sm:tracking-[0.14em]">
-              {location.city}
+              2010
             </dd>
           </div>
           <div>
-            <dt className="rule-label text-[9px] text-brass/80 sm:text-[10px]">Latitude</dt>
+            <dt className="rule-label text-[9px] text-brass/80 sm:text-[10px]">Jurisdiction</dt>
             <dd className="mt-1 font-mono text-[10px] tracking-[0.1em] text-foreground sm:text-[12px] sm:tracking-[0.14em]">
-              {location.latitude}
+              RAJASTHAN HC
             </dd>
           </div>
           <div>
-            <dt className="rule-label text-[9px] text-brass/80 sm:text-[10px]">Longitude</dt>
+            <dt className="rule-label text-[9px] text-brass/80 sm:text-[10px]">Consultation</dt>
             <dd className="mt-1 font-mono text-[10px] tracking-[0.1em] text-foreground sm:text-[12px] sm:tracking-[0.14em]">
-              {location.longitude}
+              BY APPOINTMENT
             </dd>
           </div>
         </dl>
