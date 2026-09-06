@@ -2,7 +2,7 @@ import { firm, location } from "@/lib/firmData";
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden border-t border-[#080B0F]/10 bg-terracotta text-white">
+    <footer className="relative overflow-hidden border-t border-[#23120B]/10 bg-terracotta text-white">
       {/* Pattern Overlay */}
       <div className="absolute inset-0 bg-pattern-jaali opacity-30 mix-blend-overlay pointer-events-none" />
       

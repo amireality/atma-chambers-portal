@@ -19,14 +19,14 @@ const getIcon = (code: string) => {
 
 export function PracticeGrid() {
   return (
-    <section id="practice" className="border-b border-[#080B0F]/10 bg-[#F4F0E8] text-[#080B0F]">
+    <section id="practice" className="border-b border-[#23120B]/10 bg-[#F4F0E8] text-[#23120B]">
       <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-10 sm:py-32">
         <p className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]">03 / PRACTICE</p>
-        <h2 className="mt-6 font-display text-5xl font-light tracking-[0.02em] text-[#080B0F] sm:text-7xl">
+        <h2 className="mt-6 font-display text-5xl font-light tracking-[0.02em] text-[#23120B] sm:text-7xl">
           AREAS OF PRACTICE
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-px border border-[#080B0F]/10 bg-[#080B0F]/10 md:grid-cols-12">
+        <div className="mt-16 grid grid-cols-1 gap-px border border-[#23120B]/10 bg-[#23120B]/10 md:grid-cols-12">
           {practiceAreas.map((area) => {
             const Icon = getIcon(area.code);
             return (
@@ -46,8 +46,8 @@ export function PracticeGrid() {
                   className="pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full bg-[#B99A62]/0 blur-2xl transition-colors duration-700 group-hover:bg-white/10"
                 />
 
-                <div className="flex items-baseline justify-between relative z-10">
-                  <span className="font-mono text-[10px] tracking-[0.24em] text-[#080B0F]/40 transition-colors duration-700 group-hover:text-white/60">
+                <div className="flex items-baseline gap-4 relative z-10">
+                  <span className="font-mono text-[10px] tracking-[0.24em] text-[#23120B]/40 transition-colors duration-700 group-hover:text-white/60">
                     {area.index}
                   </span>
                   <span className="font-mono text-[10px] tracking-[0.24em] text-[#B99A62] transition-colors duration-700 group-hover:text-white/80">
@@ -55,7 +55,7 @@ export function PracticeGrid() {
                   </span>
                 </div>
 
-                <h3 className="mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] text-[#080B0F] transition-all duration-700 group-hover:-translate-y-1 group-hover:text-white sm:text-3xl relative z-10">
+                <h3 className="mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] text-[#23120B] transition-all duration-700 group-hover:-translate-y-1 group-hover:text-white sm:text-3xl relative z-10">
                   {area.title}
                 </h3>
 
