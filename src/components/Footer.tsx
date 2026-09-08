@@ -1,5 +1,4 @@
 import { firm, location } from "@/lib/firmData";
-
 import { Link } from "@tanstack/react-router";
 
 export function Footer() {
@@ -12,8 +11,8 @@ export function Footer() {
       
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 py-16 sm:px-10">
         <div className="flex flex-col gap-6 md:flex-row md:items-center md:justify-between font-mono text-[10px] tracking-[0.24em] text-white/80">
-          <div className="flex flex-col gap-2">
-            <span className="uppercase text-white tracking-[0.3em] font-medium">{firm.name}</span>
+          <div className="flex flex-col items-start gap-2">
+            <img src="/logo.png" alt={firm.name} className="h-12 w-auto object-contain mb-4" />
             <span>BAR COUNCIL REG. {firm.barCouncilReg}</span>
             <span>
               {location.city} · {location.state} · {location.country}

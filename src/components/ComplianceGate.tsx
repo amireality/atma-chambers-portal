@@ -67,9 +67,7 @@ export function ComplianceGate({ children }: { children: React.ReactNode }) {
         >
           <div className="w-full max-w-2xl border border-border bg-card/80 shadow-[0_40px_120px_-40px_rgba(0,0,0,0.9)]">
             <div className="flex items-center justify-between border-b border-border px-6 py-4 sm:px-10">
-              <span className="font-mono text-[10px] tracking-[0.28em] text-brass">
-                {firm.shortName}
-              </span>
+              <img src="/logo.png" alt={firm.shortName} className="h-8 w-auto object-contain" />
               <span className="font-mono text-[10px] tracking-[0.28em] text-muted-foreground">
                 BAR COUNCIL OF INDIA · RULE 36
               </span>

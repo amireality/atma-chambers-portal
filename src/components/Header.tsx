@@ -14,9 +14,9 @@ export function Header() {
       <div className="mx-auto flex h-[72px] w-full max-w-[1400px] items-center justify-between px-5 sm:px-10">
         <Link
           to="/"
-          className="font-mono text-[12px] tracking-[0.32em] text-[#F4F0E8] transition-colors hover:text-[#B99A62]"
+          className="transition-opacity hover:opacity-80"
         >
-          {firm.shortName}
+          <img src="/logo.png" alt={firm.shortName} className="h-12 w-auto object-contain" />
         </Link>
 
         <nav aria-label="Primary" className="absolute left-1/2 hidden -translate-x-1/2 lg:block">
