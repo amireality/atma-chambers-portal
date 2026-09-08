@@ -18,15 +18,16 @@ const getIcon = (code: string) => {
   }
 };
 
-function PracticeCard({ area }: { area: typeof practiceAreas[0] }) {
+function PracticeCard({ area, index }: { area: typeof practiceAreas[0]; index: number }) {
   const Icon = getIcon(area.code);
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setIsVisible(true);
+      (entries) => {
+        const entry = entries[0];
+        if (entry && entry.isIntersecting) setIsVisible(true);
       },
       { threshold: 0.2 }
     );
@@ -35,57 +36,66 @@ function PracticeCard({ area }: { area: typeof practiceAreas[0] }) {
   }, []);
 
   return (
-    <article
-      ref={ref}
-      className={`group relative overflow-hidden p-8 transition-all duration-1000 sm:p-10 ${area.span} ${
-        isVisible ? "bg-terracotta text-[#F4F0E8]" : "bg-[#F4F0E8] text-[#23120B]"
-      }`}
+    <div 
+      className="md:sticky md:origin-top transition-transform" 
+      style={{ 
+        top: `calc(100px + ${index * 24}px)`,
+        zIndex: index,
+        // Optional: scale down slightly as it goes back in the stack, though CSS sticky doesn't support that directly without scroll listeners.
+      }}
     >
-      {/* Geometric Pattern Overlay */}
-      <div 
-        className={`absolute inset-0 bg-pattern-circles mix-blend-overlay transition-opacity duration-1000 ${
-          isVisible ? "opacity-100" : "opacity-0"
-        }`} 
-      />
-      
-      <div 
-        className={`absolute right-8 top-8 transition-all duration-1000 ${
-          isVisible ? "opacity-100 text-white" : "opacity-0 text-[#B99A62]"
+      <article
+        ref={ref}
+        className={`group relative overflow-hidden rounded-2xl md:rounded-[2.5rem] border border-[#23120B]/10 p-8 shadow-xl transition-all duration-1000 sm:p-10 md:min-h-[380px] ${
+          isVisible ? "bg-terracotta text-[#F4F0E8] md:-translate-y-2" : "bg-[#F4F0E8] text-[#23120B]"
         }`}
       >
-        <Icon className={`w-16 h-16 sm:w-20 sm:h-20 stroke-[1] ${isVisible ? "animate-draw" : ""}`} />
-      </div>
-      
-      <span
-        aria-hidden="true"
-        className={`pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-2xl transition-colors duration-1000 ${
-          isVisible ? "bg-white/10" : "bg-[#B99A62]/0"
-        }`}
-      />
+        {/* Geometric Pattern Overlay */}
+        <div 
+          className={`absolute inset-0 bg-pattern-circles mix-blend-overlay transition-opacity duration-1000 ${
+            isVisible ? "opacity-100" : "opacity-0"
+          }`} 
+        />
+        
+        <div 
+          className={`absolute right-8 top-8 transition-all duration-1000 ${
+            isVisible ? "opacity-100 text-white" : "opacity-0 text-[#B99A62]"
+          }`}
+        >
+          <Icon className={`w-16 h-16 sm:w-20 sm:h-20 stroke-[1] ${isVisible ? "animate-draw" : ""}`} />
+        </div>
+        
+        <span
+          aria-hidden="true"
+          className={`pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-2xl transition-colors duration-1000 ${
+            isVisible ? "bg-white/10" : "bg-[#B99A62]/0"
+          }`}
+        />
 
-      <div className="flex items-baseline gap-4 relative z-10">
-        <span className={`font-mono text-[10px] tracking-[0.24em] transition-colors duration-1000 ${
-          isVisible ? "text-white/60" : "text-[#23120B]/40"
+        <div className="flex items-baseline gap-4 relative z-10">
+          <span className={`font-mono text-[10px] tracking-[0.24em] transition-colors duration-1000 ${
+            isVisible ? "text-white/60" : "text-[#23120B]/40"
+          }`}>
+            {area.index}
+          </span>
+          <span className={`font-mono text-[10px] tracking-[0.24em] transition-colors duration-1000 ${
+            isVisible ? "text-white/80" : "text-[#B99A62]"
+          }`}>
+            {area.code}
+          </span>
+        </div>
+
+        <h3 className={`mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] transition-all duration-1000 sm:text-4xl relative z-10 ${
+          isVisible ? "text-white" : "text-[#23120B]"
         }`}>
-          {area.index}
-        </span>
-        <span className={`font-mono text-[10px] tracking-[0.24em] transition-colors duration-1000 ${
-          isVisible ? "text-white/80" : "text-[#B99A62]"
-        }`}>
-          {area.code}
-        </span>
-      </div>
+          {area.title}
+        </h3>
 
-      <h3 className={`mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] transition-all duration-1000 sm:text-3xl relative z-10 ${
-        isVisible ? "-translate-y-1 text-white" : "text-[#23120B]"
-      }`}>
-        {area.title}
-      </h3>
-
-      <div className={`mt-8 h-px transition-all duration-1000 relative z-10 ${
-        isVisible ? "w-24 bg-[#B99A62]" : "w-10 bg-[#B99A62]/40"
-      }`} />
-    </article>
+        <div className={`mt-8 h-px transition-all duration-1000 relative z-10 ${
+          isVisible ? "w-24 bg-[#B99A62]" : "w-10 bg-[#B99A62]/40"
+        }`} />
+      </article>
+    </div>
   );
 }
 
@@ -98,9 +108,9 @@ export function PracticeGrid() {
           AREAS OF PRACTICE
         </h2>
 
-        <div className="mt-16 grid grid-cols-1 gap-px border border-[#23120B]/10 bg-[#23120B]/10 md:grid-cols-12">
-          {practiceAreas.map((area) => (
-            <PracticeCard key={area.code} area={area} />
+        <div className="mt-16 flex flex-col gap-6 md:gap-0 pb-[10vh] relative">
+          {practiceAreas.map((area, index) => (
+            <PracticeCard key={area.code} area={area} index={index} />
           ))}
         </div>
       </div>
