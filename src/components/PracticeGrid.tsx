@@ -1,6 +1,7 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { practiceAreas } from "@/lib/firmData";
 import { Scale, Pill, Landmark, ShieldAlert, Building2, Handshake, FileSignature, ShoppingCart, FileCheck, ScrollText } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 const getIcon = (code: string) => {
   switch (code) {
@@ -18,99 +19,129 @@ const getIcon = (code: string) => {
   }
 };
 
-function PracticeCard({ area, index }: { area: typeof practiceAreas[0]; index: number }) {
+function PracticeCard({ area, index, total }: { area: typeof practiceAreas[0]; index: number; total: number }) {
   const Icon = getIcon(area.code);
-  const [isVisible, setIsVisible] = useState(false);
-  const ref = useRef<HTMLElement>(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const entry = entries[0];
-        if (entry && entry.isIntersecting) setIsVisible(true);
-      },
-      { threshold: 0.2 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+  const cardRef = useRef<HTMLDivElement>(null);
+  const [inView, setInView] = useState(false);
+  
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "start center"]
+  });
+  
+  const yOffset = useTransform(scrollYProgress, [0, 1], [100, 0]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
-    <div 
-      className="md:sticky md:origin-top transition-transform" 
+    <motion.div 
+      ref={cardRef}
       style={{ 
-        top: `calc(100px + ${index * 24}px)`,
+        top: `calc(100px + ${index * 20}px)`,
         zIndex: index,
-        // Optional: scale down slightly as it goes back in the stack, though CSS sticky doesn't support that directly without scroll listeners.
+        y: yOffset,
+        opacity
       }}
+      className="md:sticky md:origin-top" 
     >
-      <article
-        ref={ref}
-        className={`group relative overflow-hidden rounded-2xl md:rounded-[2.5rem] border border-[#23120B]/10 p-8 shadow-xl transition-all duration-1000 sm:p-10 md:min-h-[380px] ${
-          isVisible ? "bg-terracotta text-[#F4F0E8] md:-translate-y-2" : "bg-[#F4F0E8] text-[#23120B]"
-        }`}
+      <motion.article
+        initial="hidden"
+        whileInView="visible"
+        onViewportEnter={() => setInView(true)}
+        onViewportLeave={() => setInView(false)}
+        viewport={{ once: false, amount: 0.3 }}
+        variants={{
+          hidden: { backgroundColor: "#F4F0E8", color: "#23120B", scale: 0.95 },
+          visible: { backgroundColor: "#8B3A2B", color: "#F4F0E8", scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
+        }}
+        className="group relative overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border border-[#23120B]/10 p-8 shadow-2xl sm:p-10 md:min-h-[380px]"
       >
         {/* Geometric Pattern Overlay */}
-        <div 
-          className={`absolute inset-0 bg-pattern-circles mix-blend-overlay transition-opacity duration-1000 ${
-            isVisible ? "opacity-100" : "opacity-0"
-          }`} 
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0, scale: 1.1 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } }
+          }}
+          className="absolute inset-0 bg-pattern-circles mix-blend-overlay" 
         />
         
-        <div 
-          className={`absolute right-8 top-8 transition-all duration-1000 ${
-            isVisible ? "opacity-100 text-white" : "opacity-0 text-[#B99A62]"
-          }`}
+        <motion.div 
+          variants={{
+            hidden: { opacity: 0, x: 20 },
+            visible: { opacity: 1, x: 0, transition: { duration: 0.8, delay: 0.2, ease: "easeOut" } }
+          }}
+          className="absolute right-8 top-8 text-white"
         >
-          <Icon className={`w-16 h-16 sm:w-20 sm:h-20 stroke-[1] ${isVisible ? "animate-draw" : ""}`} />
-        </div>
+          {inView && <Icon className="w-16 h-16 sm:w-20 sm:h-20 stroke-[1] animate-draw" />}
+        </motion.div>
         
-        <span
-          aria-hidden="true"
-          className={`pointer-events-none absolute -right-16 -top-16 h-32 w-32 rounded-full blur-2xl transition-colors duration-1000 ${
-            isVisible ? "bg-white/10" : "bg-[#B99A62]/0"
-          }`}
-        />
-
         <div className="flex items-baseline gap-4 relative z-10">
-          <span className={`font-mono text-[10px] tracking-[0.24em] transition-colors duration-1000 ${
-            isVisible ? "text-white/60" : "text-[#23120B]/40"
-          }`}>
+          <motion.span 
+            variants={{
+              hidden: { opacity: 0.4, color: "#23120B" },
+              visible: { opacity: 0.6, color: "#FFFFFF", transition: { duration: 0.5 } }
+            }}
+            className="font-mono text-[10px] tracking-[0.24em]"
+          >
             {area.index}
-          </span>
-          <span className={`font-mono text-[10px] tracking-[0.24em] transition-colors duration-1000 ${
-            isVisible ? "text-white/80" : "text-[#B99A62]"
-          }`}>
+          </motion.span>
+          <motion.span 
+            variants={{
+              hidden: { opacity: 0.8, color: "#B99A62" },
+              visible: { opacity: 0.9, color: "#B99A62", transition: { duration: 0.5 } }
+            }}
+            className="font-mono text-[10px] tracking-[0.24em]"
+          >
             {area.code}
-          </span>
+          </motion.span>
         </div>
 
-        <h3 className={`mt-16 sm:mt-24 max-w-[22ch] font-display text-2xl font-light leading-tight tracking-[0.01em] transition-all duration-1000 sm:text-4xl relative z-10 ${
-          isVisible ? "text-white" : "text-[#23120B]"
-        }`}>
+        <motion.h3 
+          variants={{
+            hidden: { y: 20, opacity: 0 },
+            visible: { y: 0, opacity: 1, transition: { duration: 0.6, delay: 0.1, ease: "easeOut" } }
+          }}
+          className="mt-16 sm:mt-24 max-w-[22ch] font-display text-3xl font-light leading-tight tracking-[0.01em] sm:text-4xl relative z-10"
+        >
           {area.title}
-        </h3>
+        </motion.h3>
 
-        <div className={`mt-8 h-px transition-all duration-1000 relative z-10 ${
-          isVisible ? "w-24 bg-[#B99A62]" : "w-10 bg-[#B99A62]/40"
-        }`} />
-      </article>
-    </div>
+        <motion.div 
+          variants={{
+            hidden: { width: "2.5rem", backgroundColor: "rgba(185,154,98,0.4)" },
+            visible: { width: "6rem", backgroundColor: "rgba(185,154,98,1)", transition: { duration: 0.8, delay: 0.3, ease: "easeOut" } }
+          }}
+          className="mt-8 h-px relative z-10" 
+        />
+      </motion.article>
+    </motion.div>
   );
 }
 
 export function PracticeGrid() {
   return (
-    <section id="practice" className="border-b border-[#23120B]/10 bg-[#F4F0E8] text-[#23120B]">
+    <section id="practice" className="border-b border-[#23120B]/10 bg-[#F4F0E8] text-[#23120B] relative z-20">
       <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-10 sm:py-32">
-        <p className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]">03 / PRACTICE</p>
-        <h2 className="mt-6 font-display text-5xl font-light tracking-[0.02em] text-[#23120B] sm:text-7xl">
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]"
+        >
+          03 / PRACTICE
+        </motion.p>
+        <motion.h2 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="mt-6 font-display text-5xl font-light tracking-[0.02em] text-[#23120B] sm:text-7xl"
+        >
           AREAS OF PRACTICE
-        </h2>
+        </motion.h2>
 
-        <div className="mt-16 flex flex-col gap-6 md:gap-0 pb-[10vh] relative">
+        <div className="mt-16 flex flex-col gap-6 md:gap-0 pb-[20vh] relative">
           {practiceAreas.map((area, index) => (
-            <PracticeCard key={area.code} area={area} index={index} />
+            <PracticeCard key={area.code} area={area} index={index} total={practiceAreas.length} />
           ))}
         </div>
       </div>
