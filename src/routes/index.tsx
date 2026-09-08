@@ -28,16 +28,12 @@ export const Route = createFileRoute("/")({
 function Index() {
   return (
     <ComplianceGate>
-      <div className="min-h-screen bg-background">
-        <Header />
-        <main>
-          <Hero />
-          <CounselRoster />
-          <PracticeGrid />
-          <Chambers />
-        </main>
-        <Footer />
-      </div>
+      <main>
+        <Hero />
+        <CounselRoster />
+        <PracticeGrid />
+        <Chambers />
+      </main>
     </ComplianceGate>
   );
 }

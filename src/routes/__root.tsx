@@ -119,13 +119,22 @@ function RootShell({ children }: { children: ReactNode }) {
   );
 }
 
+import { SmoothScroll } from "../components/SmoothScroll";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <SmoothScroll>
+        <div className="relative min-h-screen bg-[#F4F0E8] text-[#23120B]">
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      </SmoothScroll>
     </QueryClientProvider>
   );
 }
