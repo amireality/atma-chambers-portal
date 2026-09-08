@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router';
 import { PracticeGrid } from '@/components/PracticeGrid';
 
-export const Route = createFileRoute('/practice')({
+export const Route = createFileRoute('/practice/')({
   component: PracticePage,
 });
 
