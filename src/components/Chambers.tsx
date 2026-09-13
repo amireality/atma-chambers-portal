@@ -5,20 +5,35 @@ export function Chambers() {
     <section id="chambers" className="border-b border-[#23120B]/10 bg-[#F4F0E8] text-[#23120B]">
       <div className="mx-auto max-w-[1400px] px-5 py-24 sm:px-10 sm:py-32">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-12 lg:gap-10">
-          <div className="lg:col-span-6">
-            <p className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]">04 / CHAMBERS</p>
-            <h2 className="mt-6 font-display text-6xl font-light leading-[0.95] tracking-[0.01em] text-[#23120B] sm:text-7xl lg:text-8xl">
-              CHAMBERS
-              <span className="block italic text-[#B99A62]">JAIPUR</span>
-            </h2>
-            <div className="mt-10 h-px w-24 bg-[#B99A62]" />
-            <p className="mt-5 font-mono text-[10px] tracking-[0.26em] text-[#23120B]/60">
-              {location.latitude} / {location.longitude}
-            </p>
+          <div className="lg:col-span-6 flex flex-col">
+            <div>
+              <p className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]">04 / CHAMBERS</p>
+              <h2 className="mt-6 font-display text-6xl font-light leading-[0.95] tracking-[0.01em] text-[#23120B] sm:text-7xl lg:text-8xl">
+                CHAMBERS
+                <span className="block italic text-[#B99A62]">JAIPUR</span>
+              </h2>
+              <div className="mt-10 h-px w-24 bg-[#B99A62]" />
+              <p className="mt-5 font-mono text-[10px] tracking-[0.26em] text-[#23120B]/60">
+                {location.latitude} / {location.longitude}
+              </p>
+            </div>
+            
+            <div className="mt-12 h-64 w-full sm:h-80 lg:pr-10 rounded-2xl overflow-hidden border border-[#23120B]/10">
+              <iframe 
+                src="https://maps.google.com/maps?q=Advocate%20Tarun%20Mishra%20And%20Associates%20Jaipur&t=&z=15&ie=UTF8&iwloc=&output=embed" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                className="grayscale opacity-90 transition-all hover:grayscale-0 hover:opacity-100"
+              ></iframe>
+            </div>
           </div>
 
           <div className="lg:col-span-6">
-            <dl className="border-t border-[#23120B]/10">
+            <dl className="border-t border-[#23120B]/10 h-full flex flex-col justify-center">
               <div className="border-b border-[#23120B]/10 py-8">
                 <dt className="rule-label text-[#23120B]/50">Address</dt>
                 <dd className="mt-4 font-display text-2xl font-light leading-snug text-[#23120B]">
@@ -27,24 +42,6 @@ export function Chambers() {
                       {line}
                     </span>
                   ))}
-                </dd>
-              </div>
-
-              <div className="border-b border-[#23120B]/10 py-8">
-                <dt className="rule-label text-[#23120B]/50">Address</dt>
-                <dd className="mt-4 font-display text-2xl font-light leading-snug text-[#23120B]">
-                  <a 
-                    href="https://share.google/DD14SsWJDK4NTWl08" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                    className="block transition-colors hover:text-[#B99A62]"
-                  >
-                    {office.lines.map((line) => (
-                      <span key={line} className="block">
-                        {line}
-                      </span>
-                    ))}
-                  </a>
                 </dd>
               </div>
 
