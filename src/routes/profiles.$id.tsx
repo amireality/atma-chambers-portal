@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { associates, leadCounsel, practiceAreas } from '@/lib/firmData';
+import { associates, contact, leadCounsel, practiceAreas } from '@/lib/firmData';
 import { motion } from 'framer-motion';
 
 export const Route = createFileRoute('/profiles/$id')({
