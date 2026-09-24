@@ -6,6 +6,8 @@ const nav = [
   { label: "COUNSEL", href: "/counsel" },
   { label: "CHAMBERS", href: "/chambers" },
   { label: "ABOUT", href: "/about" },
+  { label: "INSIGHTS", href: "/insights" },
+  { label: "CONTACT", href: "/contact" },
 ];
 
 export function Header() {

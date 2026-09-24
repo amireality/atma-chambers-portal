@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { associates, leadCounsel } from "@/lib/firmData";
 import { motion, useMotionTemplate, useMotionValue } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -16,16 +16,16 @@ const rows: Row[] = [
   {
     name: leadCounsel.name,
     role: leadCounsel.role,
-    meta: [leadCounsel.qualifications, leadCounsel.registration],
+    meta: [leadCounsel.qualifications || "", leadCounsel.registration || ""].filter(Boolean),
     span: "md:col-span-2 md:row-span-2",
-    slug: leadCounsel.name.toLowerCase().replace(/\s+/g, '-'),
+    slug: leadCounsel.id,
   },
   ...associates.map((a) => ({ 
     name: a.name, 
     role: a.role, 
     meta: [], 
     span: "md:col-span-1 md:row-span-1",
-    slug: a.name.toLowerCase().replace(/\s+/g, '-'),
+    slug: a.id,
   })),
 ];
 
@@ -42,15 +42,15 @@ function GlowingCard({ row }: { row: Row }) {
   return (
     <div
       onMouseMove={handleMouseMove}
-      className={`group relative flex flex-col justify-between overflow-hidden rounded-[2rem] border border-[#23120B]/10 bg-white/40 p-8 transition-all hover:border-[#B99A62]/30 hover:shadow-2xl ${row.span}`}
+      className={`group relative flex flex-col justify-between overflow-hidden rounded-sm border border-[#23120B]/10 bg-white/40 p-8 transition-all hover:border-terracotta/30 hover:shadow-xl ${row.span}`}
     >
       <motion.div
-        className="pointer-events-none absolute -inset-px rounded-[2rem] opacity-0 transition duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute -inset-px rounded-sm opacity-0 transition duration-300 group-hover:opacity-100"
         style={{
           background: useMotionTemplate`
             radial-gradient(
               400px circle at ${mouseX}px ${mouseY}px,
-              rgba(185,154,98,0.15),
+              rgba(185,154,98,0.12),
               transparent 80%
             )
           `,
@@ -67,7 +67,7 @@ function GlowingCard({ row }: { row: Row }) {
         
         <div className="mt-6 flex-grow">
           {row.meta.map((m, idx) => (
-            <p key={idx} className="mb-2 font-mono text-[10px] tracking-[0.15em] text-[#23120B]/60">
+            <p key={idx} className="mb-2 font-mono text-[11px] tracking-[0.15em] text-[#23120B]/70">
               {m}
             </p>
           ))}
@@ -89,12 +89,12 @@ export function CounselRoster() {
     <section id="counsel" className="relative border-b border-[#23120B]/10 bg-[#F4F0E8] text-[#23120B]">
       <div className="relative z-10 mx-auto max-w-[1400px] px-5 pt-32 pb-24 sm:px-10 sm:pt-40 sm:pb-32">
         <div className="mb-16 flex flex-col items-start animate-fade-in-up">
-          <p className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]">02 / COUNSEL</p>
+          <p className="font-mono text-[10px] tracking-[0.32em] text-[#B99A62]">THE TEAM</p>
           <h2 className="mt-6 font-display text-5xl font-light tracking-[0.02em] text-[#23120B] sm:text-7xl">
-            THE CHAMBERS
+            COUNSEL
           </h2>
-          <p className="mt-6 font-mono text-sm leading-relaxed tracking-[0.1em] text-[#23120B]/70 max-w-lg">
-            A collaborative legal practice anchored by rigorous analytical standards and profound institutional experience.
+          <p className="mt-8 text-lg font-light leading-relaxed text-[#23120B]/80 max-w-2xl">
+            The Chambers brings together advocates and legal practitioners working across litigation, regulatory matters, commercial disputes and public law.
           </p>
         </div>
 

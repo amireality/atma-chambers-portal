@@ -10,33 +10,141 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ChambersRouteImport } from './routes/chambers'
+import { Route as CounselRouteImport } from './routes/counsel'
+import { Route as PrivacyRouteImport } from './routes/privacy'
+import { Route as TermsRouteImport } from './routes/terms'
+import { Route as PracticeIndexRouteImport } from './routes/practice.index'
+import { Route as PracticeAreaIdRouteImport } from './routes/practice.$areaId'
+import { Route as ProfilesIdRouteImport } from './routes/profiles.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChambersRoute = ChambersRouteImport.update({
+  id: '/chambers',
+  path: '/chambers',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CounselRoute = CounselRouteImport.update({
+  id: '/counsel',
+  path: '/counsel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacyRoute = PrivacyRouteImport.update({
+  id: '/privacy',
+  path: '/privacy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TermsRoute = TermsRouteImport.update({
+  id: '/terms',
+  path: '/terms',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeIndexRoute = PracticeIndexRouteImport.update({
+  id: '/practice/',
+  path: '/practice/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PracticeAreaIdRoute = PracticeAreaIdRouteImport.update({
+  id: '/practice/$areaId',
+  path: '/practice/$areaId',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfilesIdRoute = ProfilesIdRouteImport.update({
+  id: '/profiles/$id',
+  path: '/profiles/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/chambers': typeof ChambersRoute
+  '/counsel': typeof CounselRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/practice/$areaId': typeof PracticeAreaIdRoute
+  '/profiles/$id': typeof ProfilesIdRoute
+  '/practice/': typeof PracticeIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/chambers': typeof ChambersRoute
+  '/counsel': typeof CounselRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/practice/$areaId': typeof PracticeAreaIdRoute
+  '/profiles/$id': typeof ProfilesIdRoute
+  '/practice': typeof PracticeIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/chambers': typeof ChambersRoute
+  '/counsel': typeof CounselRoute
+  '/privacy': typeof PrivacyRoute
+  '/terms': typeof TermsRoute
+  '/practice/$areaId': typeof PracticeAreaIdRoute
+  '/profiles/$id': typeof ProfilesIdRoute
+  '/practice/': typeof PracticeIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/chambers'
+    | '/counsel'
+    | '/privacy'
+    | '/terms'
+    | '/practice/$areaId'
+    | '/profiles/$id'
+    | '/practice/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/about'
+    | '/chambers'
+    | '/counsel'
+    | '/privacy'
+    | '/terms'
+    | '/practice/$areaId'
+    | '/profiles/$id'
+    | '/practice'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/chambers'
+    | '/counsel'
+    | '/privacy'
+    | '/terms'
+    | '/practice/$areaId'
+    | '/profiles/$id'
+    | '/practice/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  ChambersRoute: typeof ChambersRoute
+  CounselRoute: typeof CounselRoute
+  PrivacyRoute: typeof PrivacyRoute
+  TermsRoute: typeof TermsRoute
+  PracticeAreaIdRoute: typeof PracticeAreaIdRoute
+  ProfilesIdRoute: typeof ProfilesIdRoute
+  PracticeIndexRoute: typeof PracticeIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +156,75 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/chambers': {
+      id: '/chambers'
+      path: '/chambers'
+      fullPath: '/chambers'
+      preLoaderRoute: typeof ChambersRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/counsel': {
+      id: '/counsel'
+      path: '/counsel'
+      fullPath: '/counsel'
+      preLoaderRoute: typeof CounselRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacy': {
+      id: '/privacy'
+      path: '/privacy'
+      fullPath: '/privacy'
+      preLoaderRoute: typeof PrivacyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/terms': {
+      id: '/terms'
+      path: '/terms'
+      fullPath: '/terms'
+      preLoaderRoute: typeof TermsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice/': {
+      id: '/practice/'
+      path: '/practice'
+      fullPath: '/practice/'
+      preLoaderRoute: typeof PracticeIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/practice/$areaId': {
+      id: '/practice/$areaId'
+      path: '/practice/$areaId'
+      fullPath: '/practice/$areaId'
+      preLoaderRoute: typeof PracticeAreaIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profiles/$id': {
+      id: '/profiles/$id'
+      path: '/profiles/$id'
+      fullPath: '/profiles/$id'
+      preLoaderRoute: typeof ProfilesIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  ChambersRoute: ChambersRoute,
+  CounselRoute: CounselRoute,
+  PrivacyRoute: PrivacyRoute,
+  TermsRoute: TermsRoute,
+  PracticeAreaIdRoute: PracticeAreaIdRoute,
+  ProfilesIdRoute: ProfilesIdRoute,
+  PracticeIndexRoute: PracticeIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

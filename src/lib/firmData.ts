@@ -10,18 +10,52 @@ export const firm = {
   barCouncilReg: "R/3207/2010",
 } as const;
 
-export const leadCounsel = {
+export interface CounselProfile {
+  id: string;
+  name: string;
+  role: string;
+  qualifications?: string;
+  registration?: string;
+  profileText: string[];
+  practiceAreas: string[];
+}
+
+export const leadCounsel: CounselProfile = {
+  id: "tarun-kumar-mishra",
   name: "Adv. Tarun Kumar Mishra",
   role: "LEAD COUNSEL",
   qualifications: "B.Sc., LL.B.",
-  registration: "BAR COUNCIL REG: R/3207/2010",
-} as const;
+  registration: "Bar Council Registration: R/3207/2010",
+  profileText: [
+    "Adv. Tarun Kumar Mishra is the Lead Counsel at Advocate Tarun Mishra & Associates, a legal practice established in 2010 and based in Jaipur, Rajasthan.",
+    "His practice is structured around legal research, strategic analysis, advocacy and representation across matters involving constitutional and administrative law, regulatory issues, commercial disputes, government procurement, criminal law and appellate proceedings."
+  ],
+  practiceAreas: ["CONST", "PHARMA", "PROC", "CIV/COMM", "ADR", "APPL"],
+};
 
-export const associates = [
-  { name: "Adv. J. P. Bhardwaj", role: "ASSOCIATE ADVOCATE" },
-  { name: "Adv. Shubham Agarwal", role: "ASSOCIATE ADVOCATE" },
-  { name: "Adv. Dikshant Prajapat", role: "ASSOCIATE ADVOCATE" },
-] as const;
+export const associates: CounselProfile[] = [
+  { 
+    id: "j-p-bhardwaj",
+    name: "Adv. J. P. Bhardwaj", 
+    role: "ASSOCIATE ADVOCATE",
+    profileText: ["Information regarding professional experience, educational qualifications, and practice areas is currently being updated and will be published upon verification."],
+    practiceAreas: []
+  },
+  { 
+    id: "shubham-agarwal",
+    name: "Adv. Shubham Agarwal", 
+    role: "ASSOCIATE ADVOCATE",
+    profileText: ["Information regarding professional experience, educational qualifications, and practice areas is currently being updated and will be published upon verification."],
+    practiceAreas: []
+  },
+  { 
+    id: "dikshant-prajapat",
+    name: "Adv. Dikshant Prajapat", 
+    role: "ASSOCIATE ADVOCATE",
+    profileText: ["Information regarding professional experience, educational qualifications, and practice areas is currently being updated and will be published upon verification."],
+    practiceAreas: []
+  },
+];
 
 export const contact = {
   telephones: ["+91 8955801545", "+91 9414353632"],

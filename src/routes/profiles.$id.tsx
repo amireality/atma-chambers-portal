@@ -1,5 +1,5 @@
-import { createFileRoute } from '@tanstack/react-router';
-import { associates, leadCounsel } from '@/lib/firmData';
+import { createFileRoute, Link } from '@tanstack/react-router';
+import { associates, leadCounsel, practiceAreas } from '@/lib/firmData';
 import { motion } from 'framer-motion';
 
 export const Route = createFileRoute('/profiles/$id')({
@@ -10,11 +10,14 @@ function ProfilePage() {
   const { id } = Route.useParams();
   
   const allCounsel = [leadCounsel, ...associates];
-  const profile = allCounsel.find((p) => p.name.toLowerCase().replace(/\s+/g, '-') === id);
+  // Match using the robust 'id' field now present on the objects
+  const profile = allCounsel.find((p) => p.id === id);
 
   if (!profile) {
     return <div className="pt-40 text-center">Profile Not Found</div>;
   }
+
+  const profilePracticeAreas = practiceAreas.filter(area => profile.practiceAreas.includes(area.code));
 
   return (
     <main className="min-h-screen bg-[#F4F0E8] text-[#23120B] pt-32 pb-24">
@@ -26,9 +29,9 @@ function ProfilePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="aspect-[3/4] bg-[#23120B]/5 rounded-[2rem] border border-[#23120B]/10 overflow-hidden relative"
+              className="aspect-[3/4] bg-[#23120B]/5 rounded-sm border border-[#23120B]/10 overflow-hidden relative"
             >
-              {/* Image placeholder */}
+              {/* Image placeholder - corners changed to square/sm to match executive look */}
               <div className="absolute inset-0 bg-gradient-to-t from-[#23120B]/20 to-transparent mix-blend-multiply" />
             </motion.div>
           </div>
@@ -46,30 +49,51 @@ function ProfilePage() {
                 {profile.name}
               </h1>
               
-              {'qualifications' in profile && (
+              {(profile.qualifications || profile.registration) && (
                 <div className="mt-8 space-y-2">
-                  <p className="font-mono text-[10px] tracking-widest text-[#23120B]/60">
-                    {profile.qualifications}
-                  </p>
-                  <p className="font-mono text-[10px] tracking-widest text-[#23120B]/60">
-                    {profile.registration}
-                  </p>
+                  {profile.qualifications && (
+                    <p className="font-mono text-[11px] tracking-widest text-[#23120B]/70">
+                      {profile.qualifications}
+                    </p>
+                  )}
+                  {profile.registration && (
+                    <p className="font-mono text-[11px] tracking-widest text-[#23120B]/70">
+                      {profile.registration}
+                    </p>
+                  )}
                 </div>
               )}
               
-              <div className="mt-12 h-px w-full max-w-md bg-[#23120B]/10" />
+              <div className="mt-12 h-px w-full max-w-md bg-terracotta" />
 
               <div className="mt-12 space-y-6 text-lg font-light leading-relaxed text-[#23120B]/80 max-w-2xl">
-                <p>
-                  With an extensive background in complex litigation and advisory, {profile.name} brings rigorous analytical standards to the chambers. The approach is deeply rooted in comprehensive legal research and strategic foresight.
-                </p>
-                <p>
-                  Representing clients before various tribunals, high courts, and the supreme court, the practice spans across multiple domains of civil, commercial, and constitutional law.
-                </p>
+                <h3 className="font-display text-2xl text-[#23120B]">Professional Profile</h3>
+                {profile.profileText.map((paragraph, idx) => (
+                  <p key={idx}>{paragraph}</p>
+                ))}
               </div>
 
+              {profilePracticeAreas.length > 0 && (
+                <div className="mt-16">
+                  <h3 className="font-display text-2xl text-[#23120B] mb-8">Areas of Practice</h3>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {profilePracticeAreas.map((area) => (
+                      <Link
+                        key={area.code}
+                        to="/practice/$areaId"
+                        params={{ areaId: area.code.toLowerCase().replace('/', '-') }}
+                        className="group flex items-center justify-between p-6 bg-white border border-[#23120B]/10 hover:border-terracotta transition-colors"
+                      >
+                        <span className="font-display text-lg tracking-wide group-hover:text-terracotta transition-colors">{area.title}</span>
+                        <span className="text-[#B99A62] transform group-hover:translate-x-1 transition-transform">→</span>
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="mt-16">
-                <a href="mailto:contact@firm.com" className="inline-flex items-center justify-center border border-[#23120B] px-8 py-4 font-mono text-[10px] tracking-[0.2em] text-[#23120B] transition-all hover:bg-[#23120B] hover:text-[#F4F0E8] rounded-full">
+                <a href="mailto:tkm1971@gmail.com" className="inline-flex items-center justify-center border border-[#23120B] px-8 py-4 font-mono text-[10px] tracking-[0.2em] text-[#23120B] transition-all hover:bg-[#23120B] hover:text-[#F4F0E8] rounded-full">
                   CONTACT COUNSEL
                 </a>
               </div>

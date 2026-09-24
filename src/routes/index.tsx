@@ -6,6 +6,8 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { PracticeGrid } from "@/components/PracticeGrid";
+import { TheChambersIntro } from "@/components/TheChambersIntro";
+import { OurApproach } from "@/components/OurApproach";
 
 const title = "Advocate Tarun Mishra and Associates — Jaipur";
 const description =
@@ -30,8 +32,10 @@ function Index() {
     <ComplianceGate>
       <main>
         <Hero />
-        <CounselRoster />
+        <TheChambersIntro />
         <PracticeGrid />
+        <OurApproach />
+        <CounselRoster />
         <Chambers />
       </main>
     </ComplianceGate>
