@@ -1,4 +1,4 @@
-import { contact, firm, location } from "@/lib/firmData";
+import { contact, disclaimer, firm, location } from "@/lib/firmData";
 import { Link } from "@tanstack/react-router";
 
 export function Footer() {
