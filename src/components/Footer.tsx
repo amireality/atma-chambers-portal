@@ -43,7 +43,7 @@ export function Footer() {
             <div className="flex items-center gap-6">
               <Link to="/privacy" className="hover:text-white transition-colors">PRIVACY POLICY</Link>
               <Link to="/terms" className="hover:text-white transition-colors">TERMS OF USE</Link>
-              <span className="cursor-pointer hover:text-white transition-colors" onClick={() => window.localStorage.removeItem('atm-bci-gateway-accepted') || window.location.reload()}>DISCLAIMER</span>
+              <span className="cursor-pointer hover:text-white transition-colors" onClick={() => { window.localStorage.removeItem(disclaimer.storageKey); window.location.reload(); }}>DISCLAIMER</span>
             </div>
             <span>&copy; {year} {firm.name.toUpperCase()}</span>
           </div>
