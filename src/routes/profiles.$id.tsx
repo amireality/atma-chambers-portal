@@ -29,12 +29,11 @@ function ProfilePage() {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
-              className="aspect-[3/4] bg-[#23120B]/5 rounded-sm border border-[#23120B]/10 overflow-hidden relative"
+              className="aspect-[3/4] bg-white rounded-sm border border-[#23120B]/10 overflow-hidden relative"
             >
               {profile.imageUrl && (
-                <img src={profile.imageUrl} alt={profile.name} className="absolute inset-0 w-full h-full object-cover grayscale-[0.3]" />
+                <img src={profile.imageUrl} alt={profile.name} className="absolute inset-0 w-full h-full object-cover" />
               )}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#23120B]/40 via-transparent to-transparent mix-blend-multiply" />
             </motion.div>
           </div>
 

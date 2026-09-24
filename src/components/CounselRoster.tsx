@@ -37,9 +37,9 @@ export function CounselRoster() {
             className="group block relative overflow-hidden rounded-sm border border-[#23120B]/10 bg-white hover:border-terracotta/30 transition-all max-w-4xl"
           >
             <div className="grid grid-cols-1 md:grid-cols-3">
-              <div className="aspect-square md:aspect-auto md:h-full bg-[#23120B]/5 relative">
+              <div className="aspect-square md:aspect-auto md:h-full bg-white relative border-r border-[#23120B]/10">
                 {leadCounsel.imageUrl && (
-                  <img src={leadCounsel.imageUrl} alt={leadCounsel.name} className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] mix-blend-multiply" />
+                  <img src={leadCounsel.imageUrl} alt={leadCounsel.name} className="absolute inset-0 w-full h-full object-cover" />
                 )}
               </div>
               <div className="p-8 md:p-12 md:col-span-2 flex flex-col justify-center">
@@ -70,9 +70,9 @@ export function CounselRoster() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl">
             {activeAssociates.map((associate) => (
               <div key={associate.id} className="bg-white border border-[#23120B]/10 rounded-sm overflow-hidden flex flex-col">
-                <div className="aspect-[4/3] bg-[#23120B]/5 relative">
+                <div className="aspect-[4/3] bg-white relative border-b border-[#23120B]/10">
                   {associate.imageUrl && (
-                    <img src={associate.imageUrl} alt={associate.name} className="absolute inset-0 w-full h-full object-cover object-top grayscale-[0.2] mix-blend-multiply" />
+                    <img src={associate.imageUrl} alt={associate.name} className="absolute inset-0 w-full h-full object-cover object-top" />
                   )}
                 </div>
                 <div className="p-8 flex-grow flex flex-col">

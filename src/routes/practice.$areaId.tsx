@@ -1,6 +1,8 @@
 import { createFileRoute, useParams, Link } from '@tanstack/react-router';
 import { practiceAreas } from '@/lib/firmData';
 import { practiceContent } from '@/lib/practiceContent';
+import { faqs } from '@/lib/faqData';
+import { FAQBlock } from '@/components/FAQBlock';
 import { motion } from 'framer-motion';
 import ReactMarkdown from 'react-markdown';
 
@@ -65,6 +67,19 @@ function PracticeAreaDetail() {
           {/* Related Sections & Contact */}
           <div className="mt-24 pt-12 border-t border-[#23120B]/10 space-y-16">
             
+            {/* Practice Specific FAQs */}
+            {faqs.filter(f => f.category === area.code).length > 0 && (
+              <div>
+                <h2 className="font-display text-3xl mb-8 text-[#23120B]">Frequently Asked Questions</h2>
+                <FAQBlock faqs={faqs.filter(f => f.category === area.code)} />
+                <div className="mt-4">
+                  <Link to="/faq" className="font-mono text-[10px] tracking-widest text-[#B99A62] hover:text-[#23120B] transition-colors">
+                    VIEW ALL FAQs →
+                  </Link>
+                </div>
+              </div>
+            )}
+
             {/* Related Practice Areas */}
             <div>
               <h2 className="font-display text-3xl mb-8 text-[#23120B]">Related Practice Areas</h2>

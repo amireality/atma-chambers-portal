@@ -126,9 +126,9 @@ function AboutPage() {
                   params={{ id: leadCounsel.id }}
                   className="group flex flex-col sm:flex-row p-6 bg-white border border-[#23120B]/10 hover:border-terracotta transition-colors rounded-sm items-center sm:items-start gap-6"
                 >
-                  <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-[#23120B]/5 relative rounded-sm overflow-hidden">
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-white relative rounded-sm overflow-hidden border border-[#23120B]/10">
                     {leadCounsel.imageUrl && (
-                      <img src={leadCounsel.imageUrl} alt={leadCounsel.name} className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] mix-blend-multiply" />
+                      <img src={leadCounsel.imageUrl} alt={leadCounsel.name} className="absolute inset-0 w-full h-full object-cover" />
                     )}
                   </div>
                   <div className="flex-grow">
@@ -146,9 +146,9 @@ function AboutPage() {
                     key={c.id}
                     className="flex flex-col p-8 bg-white border border-[#23120B]/10 rounded-sm"
                   >
-                    <div className="w-24 h-24 mb-6 bg-[#23120B]/5 relative rounded-sm overflow-hidden">
+                    <div className="w-24 h-24 mb-6 bg-white relative rounded-sm overflow-hidden border border-[#23120B]/10">
                       {c.imageUrl && (
-                        <img src={c.imageUrl} alt={c.name} className="absolute inset-0 w-full h-full object-cover object-top grayscale-[0.2] mix-blend-multiply" />
+                        <img src={c.imageUrl} alt={c.name} className="absolute inset-0 w-full h-full object-cover object-top" />
                       )}
                     </div>
                     <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-2">{c.role}</span>
