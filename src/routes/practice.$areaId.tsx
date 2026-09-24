@@ -1,4 +1,4 @@
-import { createFileRoute, useParams } from '@tanstack/react-router';
+import { createFileRoute, useParams, Link } from '@tanstack/react-router';
 import { practiceAreas } from '@/lib/firmData';
 import { practiceContent } from '@/lib/practiceContent';
 import { motion } from 'framer-motion';
@@ -62,14 +62,47 @@ function PracticeAreaDetail() {
             {content}
           </ReactMarkdown>
 
-          <div className="mt-16 p-8 bg-white border border-[#23120B]/10 rounded-2xl shadow-sm">
-            <h3 className="font-display text-2xl mb-2 text-[#23120B]">Speak with our Counsel</h3>
-            <p className="text-sm text-muted-foreground mb-6">
-              To discuss a matter related to {area.title}, please contact our chambers to schedule a consultation.
-            </p>
-            <a href="mailto:tkm1971@gmail.com" className="inline-block bg-[#23120B] text-[#F4F0E8] px-6 py-3 rounded-full text-xs font-mono tracking-widest hover:bg-terracotta transition-colors">
-              INQUIRE
-            </a>
+          {/* Related Sections & Contact */}
+          <div className="mt-24 pt-12 border-t border-[#23120B]/10 space-y-16">
+            
+            {/* Related Practice Areas */}
+            <div>
+              <h2 className="font-display text-3xl mb-8 text-[#23120B]">Related Practice Areas</h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {practiceAreas.filter(a => a.code !== area.code).slice(0, 4).map((related) => (
+                  <Link
+                    key={related.code}
+                    to="/practice/$areaId"
+                    params={{ areaId: related.code.toLowerCase().replace('/', '-') }}
+                    className="group flex items-center justify-between p-6 bg-white border border-[#23120B]/10 hover:border-terracotta transition-colors rounded-sm"
+                  >
+                    <span className="font-display text-lg tracking-wide group-hover:text-terracotta transition-colors">{related.title}</span>
+                    <span className="text-[#B99A62] transform group-hover:translate-x-1 transition-transform">→</span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {/* Related Insights */}
+            <div>
+              <h2 className="font-display text-3xl mb-4 text-[#23120B]">Related Insights</h2>
+              <p className="text-[#23120B]/70 mb-6">Explore our legal research, case law analysis, and practical guides relating to {area.title}.</p>
+              <Link to="/insights" className="inline-flex items-center gap-2 font-mono text-[10px] tracking-widest text-terracotta hover:text-[#23120B] transition-colors">
+                VIEW INSIGHTS →
+              </Link>
+            </div>
+
+            {/* Contact CTA */}
+            <div className="p-8 bg-white border border-[#23120B]/10 rounded-sm">
+              <h3 className="font-display text-2xl mb-2 text-[#23120B]">Speak with our Counsel</h3>
+              <p className="text-[#23120B]/70 mb-6">
+                To discuss a matter related to {area.title}, please contact our chambers to schedule a consultation.
+              </p>
+              <Link to="/contact" className="inline-flex items-center justify-center bg-[#23120B] text-[#F4F0E8] px-8 py-4 text-[10px] font-mono tracking-[0.2em] hover:bg-terracotta transition-colors rounded-full">
+                REQUEST APPOINTMENT
+              </Link>
+            </div>
+            
           </div>
         </motion.div>
       </article>
