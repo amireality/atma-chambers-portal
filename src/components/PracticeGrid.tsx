@@ -31,19 +31,18 @@ function PracticeCard({ area, index }: { area: typeof practiceAreas[0]; index: n
         initial="hidden"
         whileInView="visible"
         onViewportEnter={() => setInView(true)}
-        onViewportLeave={() => setInView(false)}
-        viewport={{ once: false, amount: 0.3 }}
+        viewport={{ once: true, margin: "-50px" }}
         variants={{
-          hidden: { backgroundColor: "#F4F0E8", color: "#23120B", scale: 0.95 },
-          visible: { backgroundColor: "#8B3A2B", color: "#F4F0E8", scale: 1, transition: { duration: 0.8, ease: "easeOut" } }
+          hidden: { backgroundColor: "#F4F0E8", color: "#23120B", opacity: 0, y: 20 },
+          visible: { backgroundColor: "#8B3A2B", color: "#F4F0E8", opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } }
         }}
         className="group relative overflow-hidden rounded-[2rem] border border-[#23120B]/10 p-8 shadow-sm sm:p-10 h-full flex flex-col justify-between min-h-[340px] transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl"
       >
         {/* Geometric Pattern Overlay */}
         <motion.div 
           variants={{
-            hidden: { opacity: 0, scale: 1.1 },
-            visible: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } }
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { duration: 1.5, ease: "easeOut" } }
           }}
           className="absolute inset-0 bg-pattern-circles mix-blend-overlay" 
         />
