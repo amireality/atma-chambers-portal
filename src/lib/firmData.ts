@@ -86,7 +86,7 @@ export const associates: CounselProfile[] = [
 
 export const contact = {
   telephones: ["+91 8955801545", "+91 9414353632"],
-  email: "tkm1971@gmail.com",
+  email: "info@advtarunmishra.com",
 } as const;
 
 export const office = {

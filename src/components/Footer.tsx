@@ -1,4 +1,4 @@
-import { firm, location } from "@/lib/firmData";
+import { contact, firm, location } from "@/lib/firmData";
 import { Link } from "@tanstack/react-router";
 
 export function Footer() {
@@ -32,7 +32,7 @@ export function Footer() {
 
               <div className="flex flex-col gap-3">
                 <Link to="/contact" className="hover:text-white transition-colors">CONTACT</Link>
-                <span className="text-white/60 lowercase" style={{textTransform: 'none'}}>tkm1971@gmail.com</span>
+                <span className="text-white/60 lowercase" style={{textTransform: 'none'}}>{contact.email}</span>
                 <span className="text-white/60">+91 8955801545</span>
                 <span className="text-white/60">+91 9414353632</span>
               </div>

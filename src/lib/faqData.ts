@@ -17,7 +17,7 @@ export const faqs: FAQ[] = [
     id: "g2",
     category: "General",
     question: "How do I schedule a consultation?",
-    answer: "Consultations with our counsel are strictly by appointment. You can request an appointment by emailing us at tkm1971@gmail.com or contacting our chambers via the phone numbers provided on our Contact page."
+    answer: "Consultations with our counsel are strictly by appointment. You can request an appointment by emailing us at info@advtarunmishra.com or contacting our chambers via the phone numbers provided on our Contact page."
   },
   {
     id: "g3",
