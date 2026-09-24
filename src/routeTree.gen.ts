@@ -12,9 +12,13 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as ChambersRouteImport } from './routes/chambers'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CounselRouteImport } from './routes/counsel'
+import { Route as FaqRouteImport } from './routes/faq'
+import { Route as InsightsRouteImport } from './routes/insights'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as TermsRouteImport } from './routes/terms'
+import { Route as InsightsSlugRouteImport } from './routes/insights.$slug'
 import { Route as PracticeIndexRouteImport } from './routes/practice.index'
 import { Route as PracticeAreaIdRouteImport } from './routes/practice.$areaId'
 import { Route as ProfilesIdRouteImport } from './routes/profiles.$id'
@@ -34,9 +38,24 @@ const ChambersRoute = ChambersRouteImport.update({
   path: '/chambers',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const CounselRoute = CounselRouteImport.update({
   id: '/counsel',
   path: '/counsel',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsRoute = InsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PrivacyRoute = PrivacyRouteImport.update({
@@ -48,6 +67,11 @@ const TermsRoute = TermsRouteImport.update({
   id: '/terms',
   path: '/terms',
   getParentRoute: () => rootRouteImport,
+} as any)
+const InsightsSlugRoute = InsightsSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => InsightsRoute,
 } as any)
 const PracticeIndexRoute = PracticeIndexRouteImport.update({
   id: '/practice/',
@@ -69,9 +93,13 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chambers': typeof ChambersRoute
+  '/contact': typeof ContactRoute
   '/counsel': typeof CounselRoute
+  '/faq': typeof FaqRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/practice/$areaId': typeof PracticeAreaIdRoute
   '/profiles/$id': typeof ProfilesIdRoute
   '/practice/': typeof PracticeIndexRoute
@@ -80,9 +108,13 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chambers': typeof ChambersRoute
+  '/contact': typeof ContactRoute
   '/counsel': typeof CounselRoute
+  '/faq': typeof FaqRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/practice/$areaId': typeof PracticeAreaIdRoute
   '/profiles/$id': typeof ProfilesIdRoute
   '/practice': typeof PracticeIndexRoute
@@ -92,9 +124,13 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/chambers': typeof ChambersRoute
+  '/contact': typeof ContactRoute
   '/counsel': typeof CounselRoute
+  '/faq': typeof FaqRoute
+  '/insights': typeof InsightsRouteWithChildren
   '/privacy': typeof PrivacyRoute
   '/terms': typeof TermsRoute
+  '/insights/$slug': typeof InsightsSlugRoute
   '/practice/$areaId': typeof PracticeAreaIdRoute
   '/profiles/$id': typeof ProfilesIdRoute
   '/practice/': typeof PracticeIndexRoute
@@ -105,9 +141,13 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chambers'
+    | '/contact'
     | '/counsel'
+    | '/faq'
+    | '/insights'
     | '/privacy'
     | '/terms'
+    | '/insights/$slug'
     | '/practice/$areaId'
     | '/profiles/$id'
     | '/practice/'
@@ -116,9 +156,13 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chambers'
+    | '/contact'
     | '/counsel'
+    | '/faq'
+    | '/insights'
     | '/privacy'
     | '/terms'
+    | '/insights/$slug'
     | '/practice/$areaId'
     | '/profiles/$id'
     | '/practice'
@@ -127,9 +171,13 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/chambers'
+    | '/contact'
     | '/counsel'
+    | '/faq'
+    | '/insights'
     | '/privacy'
     | '/terms'
+    | '/insights/$slug'
     | '/practice/$areaId'
     | '/profiles/$id'
     | '/practice/'
@@ -139,7 +187,10 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ChambersRoute: typeof ChambersRoute
+  ContactRoute: typeof ContactRoute
   CounselRoute: typeof CounselRoute
+  FaqRoute: typeof FaqRoute
+  InsightsRoute: typeof InsightsRouteWithChildren
   PrivacyRoute: typeof PrivacyRoute
   TermsRoute: typeof TermsRoute
   PracticeAreaIdRoute: typeof PracticeAreaIdRoute
@@ -170,11 +221,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ChambersRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/counsel': {
       id: '/counsel'
       path: '/counsel'
       fullPath: '/counsel'
       preLoaderRoute: typeof CounselRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/insights': {
+      id: '/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof InsightsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/privacy': {
@@ -190,6 +262,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/terms'
       preLoaderRoute: typeof TermsRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/insights/$slug': {
+      id: '/insights/$slug'
+      path: '/$slug'
+      fullPath: '/insights/$slug'
+      preLoaderRoute: typeof InsightsSlugRouteImport
+      parentRoute: typeof InsightsRoute
     }
     '/practice/': {
       id: '/practice/'
@@ -215,11 +294,26 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface InsightsRouteChildren {
+  InsightsSlugRoute: typeof InsightsSlugRoute
+}
+
+const InsightsRouteChildren: InsightsRouteChildren = {
+  InsightsSlugRoute: InsightsSlugRoute,
+}
+
+const InsightsRouteWithChildren = InsightsRoute._addFileChildren(
+  InsightsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ChambersRoute: ChambersRoute,
+  ContactRoute: ContactRoute,
   CounselRoute: CounselRoute,
+  FaqRoute: FaqRoute,
+  InsightsRoute: InsightsRouteWithChildren,
   PrivacyRoute: PrivacyRoute,
   TermsRoute: TermsRoute,
   PracticeAreaIdRoute: PracticeAreaIdRoute,

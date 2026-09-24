@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from '@tanstack/react-router';
-import { associates, leadCounsel, practiceAreas } from '@/lib/firmData';
+import { associates, contact, leadCounsel, practiceAreas } from '@/lib/firmData';
 import { motion } from 'framer-motion';
 
 export const Route = createFileRoute('/profiles/$id')({
@@ -94,7 +94,7 @@ function ProfilePage() {
               )}
 
               <div className="mt-16">
-                <a href="mailto:tkm1971@gmail.com" className="inline-flex items-center justify-center border border-[#23120B] px-8 py-4 font-mono text-[10px] tracking-[0.2em] text-[#23120B] transition-all hover:bg-[#23120B] hover:text-[#F4F0E8] rounded-full">
+                <a href={`mailto:${contact.email}`} className="inline-flex items-center justify-center border border-[#23120B] px-8 py-4 font-mono text-[10px] tracking-[0.2em] text-[#23120B] transition-all hover:bg-[#23120B] hover:text-[#F4F0E8] rounded-full">
                   CONTACT COUNSEL
                 </a>
               </div>

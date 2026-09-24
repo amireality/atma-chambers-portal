@@ -26,7 +26,7 @@ function PracticeCard({ area, index }: { area: typeof practiceAreas[0]; index: n
   const slug = area.code.toLowerCase().replace('/', '-');
 
   return (
-    <Link to={`/practice/${slug}`} className="block group">
+    <Link to="/practice/$areaId" params={{ areaId: slug }} className="block group">
       <motion.article
         initial="hidden"
         whileInView="visible"

@@ -34,7 +34,8 @@ export function CounselRoster() {
           <div className="w-full max-w-lg mb-16">
             <h3 className="font-display text-2xl text-terracotta mb-6 text-center">Lead Counsel</h3>
             <Link
-              to={`/profiles/${leadCounsel.id}`}
+              to="/profiles/$id"
+              params={{ id: leadCounsel.id }}
               className="group block bg-white border border-[#23120B]/10 rounded-sm overflow-hidden flex flex-col hover:border-terracotta/30 transition-all shadow-sm hover:shadow-md"
             >
               <div className="aspect-[4/3] bg-[#F4F0E8] relative border-b border-[#23120B]/10">
