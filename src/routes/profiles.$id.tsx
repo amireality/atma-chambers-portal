@@ -31,8 +31,10 @@ function ProfilePage() {
               transition={{ duration: 0.8 }}
               className="aspect-[3/4] bg-[#23120B]/5 rounded-sm border border-[#23120B]/10 overflow-hidden relative"
             >
-              {/* Image placeholder - corners changed to square/sm to match executive look */}
-              <div className="absolute inset-0 bg-gradient-to-t from-[#23120B]/20 to-transparent mix-blend-multiply" />
+              {profile.imageUrl && (
+                <img src={profile.imageUrl} alt={profile.name} className="absolute inset-0 w-full h-full object-cover grayscale-[0.3]" />
+              )}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#23120B]/40 via-transparent to-transparent mix-blend-multiply" />
             </motion.div>
           </div>
 

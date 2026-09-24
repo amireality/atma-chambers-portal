@@ -117,19 +117,46 @@ function AboutPage() {
             <section>
               <h2 className="font-display text-3xl mb-8 text-terracotta">Counsel</h2>
               <p className="text-lg font-light leading-relaxed text-[#23120B]/80 mb-8">
-                The advocates and legal practitioners comprising the Chambers.
+                Tarun Mishra & Associates is led by Founder and Lead Counsel Adv. Tarun Kumar Mishra and supported by Associate Advocates Adv. J. P. Bhardwaj and Adv. Dikshant Prajapat.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {allCounsel.map((c) => (
-                  <Link
+              
+              <div className="mb-12">
+                <Link
+                  to="/profiles/$id"
+                  params={{ id: leadCounsel.id }}
+                  className="group flex flex-col sm:flex-row p-6 bg-white border border-[#23120B]/10 hover:border-terracotta transition-colors rounded-sm items-center sm:items-start gap-6"
+                >
+                  <div className="w-24 h-24 sm:w-32 sm:h-32 shrink-0 bg-[#23120B]/5 relative rounded-sm overflow-hidden">
+                    {leadCounsel.imageUrl && (
+                      <img src={leadCounsel.imageUrl} alt={leadCounsel.name} className="absolute inset-0 w-full h-full object-cover grayscale-[0.2] mix-blend-multiply" />
+                    )}
+                  </div>
+                  <div className="flex-grow">
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-2 block">{leadCounsel.role}</span>
+                    <span className="font-display text-2xl tracking-wide group-hover:text-terracotta transition-colors block mb-2">{leadCounsel.name}</span>
+                    <p className="font-mono text-[11px] text-[#23120B]/60 tracking-widest uppercase mb-4">{leadCounsel.qualifications} | {leadCounsel.registration}</p>
+                    <span className="font-mono text-[10px] tracking-widest text-terracotta">VIEW FULL PROFILE →</span>
+                  </div>
+                </Link>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {associates.filter(a => a.id !== "shubham-agarwal").map((c) => (
+                  <div
                     key={c.id}
-                    to="/profiles/$id"
-                    params={{ id: c.id }}
-                    className="group flex flex-col p-6 bg-white border border-[#23120B]/10 hover:border-terracotta transition-colors rounded-sm"
+                    className="flex flex-col p-8 bg-white border border-[#23120B]/10 rounded-sm"
                   >
+                    <div className="w-24 h-24 mb-6 bg-[#23120B]/5 relative rounded-sm overflow-hidden">
+                      {c.imageUrl && (
+                        <img src={c.imageUrl} alt={c.name} className="absolute inset-0 w-full h-full object-cover object-top grayscale-[0.2] mix-blend-multiply" />
+                      )}
+                    </div>
                     <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-2">{c.role}</span>
-                    <span className="font-display text-xl tracking-wide group-hover:text-terracotta transition-colors">{c.name}</span>
-                  </Link>
+                    <span className="font-display text-2xl tracking-wide mb-4 text-[#23120B]">{c.name}</span>
+                    <div className="text-sm font-light leading-relaxed text-[#23120B]/70 space-y-4">
+                      {c.profileText.slice(0, 2).map((p, i) => <p key={i}>{p}</p>)}
+                    </div>
+                  </div>
                 ))}
               </div>
             </section>
