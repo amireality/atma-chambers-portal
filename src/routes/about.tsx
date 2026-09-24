@@ -114,30 +114,29 @@ function AboutPage() {
             </section>
 
             {/* Counsel */}
-            <section>
-              <h2 className="font-display text-3xl mb-8 text-terracotta">Counsel</h2>
-              <p className="text-lg font-light leading-relaxed text-[#23120B]/80 mb-8">
+            <section className="flex flex-col items-center">
+              <h2 className="font-display text-3xl mb-8 text-terracotta w-full text-left">Counsel</h2>
+              <p className="text-lg font-light leading-relaxed text-[#23120B]/80 mb-16 w-full text-left">
                 Tarun Mishra & Associates is led by Founder and Lead Counsel Adv. Tarun Kumar Mishra and supported by Associate Advocates Adv. J. P. Bhardwaj and Adv. Dikshant Prajapat.
               </p>
               
-              <div className="mb-12">
+              <div className="w-full max-w-lg mb-16">
                 <Link
                   to="/profiles/$id"
                   params={{ id: leadCounsel.id }}
-                  className="group flex flex-col p-8 bg-white border border-[#23120B]/10 hover:border-terracotta/30 transition-all rounded-sm items-center sm:items-start"
+                  className="group block bg-white border border-[#23120B]/10 hover:border-terracotta/30 transition-all rounded-sm overflow-hidden shadow-sm hover:shadow-md"
                 >
-                  <div className="w-full aspect-[16/9] sm:aspect-[2/1] bg-[#F4F0E8] relative rounded-sm overflow-hidden border border-[#23120B]/10 mb-8">
+                  <div className="w-full aspect-[4/3] bg-[#F4F0E8] relative border-b border-[#23120B]/10">
                     {leadCounsel.imageUrl && (
                       <img src={leadCounsel.imageUrl} alt={leadCounsel.name} className="absolute inset-0 w-full h-full object-cover object-top" />
                     )}
                   </div>
-                  <div className="w-full">
-                    <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-3 block">{leadCounsel.role}</span>
-                    <span className="font-display text-3xl sm:text-4xl tracking-wide group-hover:text-terracotta transition-colors block mb-4">{leadCounsel.name}</span>
+                  <div className="p-8 md:p-10 flex flex-col items-center text-center">
+                    <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-4 block">{leadCounsel.role}</span>
+                    <span className="font-display text-3xl sm:text-4xl tracking-wide text-[#23120B] mb-4">{leadCounsel.name}</span>
                     <p className="font-mono text-[11px] text-[#23120B]/60 tracking-widest uppercase mb-8">{leadCounsel.qualifications} | {leadCounsel.registration}</p>
-                    <div className="flex items-center gap-4">
-                      <div className="h-px w-12 bg-[#23120B]/20 transition-all duration-300 group-hover:w-24 group-hover:bg-[#B99A62]" />
-                      <span className="font-mono text-[10px] tracking-widest text-[#23120B]/40 transition-colors group-hover:text-[#B99A62] flex items-center gap-2">
+                    <div className="flex items-center justify-center gap-4">
+                      <span className="font-mono text-[10px] tracking-widest text-[#23120B]/60 transition-colors group-hover:text-[#B99A62] flex items-center gap-2">
                         VIEW FULL PROFILE →
                       </span>
                     </div>
@@ -145,27 +144,29 @@ function AboutPage() {
                 </Link>
               </div>
 
-              <h3 className="font-display text-2xl text-terracotta mb-6">Associate Advocates</h3>
-              <div className="grid grid-cols-1 gap-6">
-                {associates.filter(a => a.id !== "shubham-agarwal").map((c) => (
-                  <div
-                    key={c.id}
-                    className="flex flex-col sm:flex-row bg-white border border-[#23120B]/10 rounded-sm overflow-hidden"
-                  >
-                    <div className="w-full sm:w-48 h-48 bg-[#F4F0E8] relative border-b sm:border-b-0 sm:border-r border-[#23120B]/10 flex-shrink-0">
-                      {c.imageUrl && (
-                        <img src={c.imageUrl} alt={c.name} className="absolute inset-0 w-full h-full object-cover object-top" />
-                      )}
+              <div className="w-full max-w-4xl">
+                <h3 className="font-display text-2xl text-terracotta mb-6 text-center">Associate Advocates</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                  {associates.filter(a => a.id !== "shubham-agarwal").map((c) => (
+                    <div
+                      key={c.id}
+                      className="flex flex-col bg-white border border-[#23120B]/10 rounded-sm overflow-hidden"
+                    >
+                      <div className="w-full aspect-[4/3] sm:aspect-[3/2] bg-[#F4F0E8] relative border-b border-[#23120B]/10 flex-shrink-0">
+                        {c.imageUrl && (
+                          <img src={c.imageUrl} alt={c.name} className="absolute inset-0 w-full h-full object-cover object-top" />
+                        )}
+                      </div>
+                      <div className="p-8 flex-grow flex flex-col">
+                        <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-3 block">{c.role}</span>
+                        <span className="font-display text-2xl tracking-wide mb-4 text-[#23120B] block">{c.name}</span>
+                        <p className="text-sm font-light leading-relaxed text-[#23120B]/70 line-clamp-4">
+                          {c.profileText[0]}
+                        </p>
+                      </div>
                     </div>
-                    <div className="p-6 sm:p-8 flex-grow flex flex-col justify-center">
-                      <span className="font-mono text-[10px] tracking-[0.2em] text-[#B99A62] mb-2 block">{c.role}</span>
-                      <span className="font-display text-2xl tracking-wide mb-3 text-[#23120B] block">{c.name}</span>
-                      <p className="text-xs font-light leading-relaxed text-[#23120B]/70 line-clamp-3">
-                        {c.profileText[0]}
-                      </p>
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             </section>
 
